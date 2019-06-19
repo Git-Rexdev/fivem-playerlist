@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<head>
+    <title>Player List</title>
+    <script type="text/javascript">
+        function validate_servername() {
+            var inp = document.forms["servername_form"]["servername"].value;
+
+            if (!inp.match('[^\:]+:[0-9]{1,5}')) {
+                alert("Please enter a proper server host and port. Example: fivem.example.org:30120 OR 127.0.0.1:30120");
+                return false;
+            }
+        }
+    </script>
+    <style type="text/css">
+        table {
+            width: 100%;
+            background-color: #FFFFFF;
+            border-collapse: collapse;
+            border-width: 2px;
+            border-color: #7ea8f8;
+            border-style: solid;
+            color: #000000;
+        }
+
+        table td, table.customTable th {
+            border-width: 2px;
+            border-color: #7ea8f8;
+            border-style: solid;
+            padding: 5px;
+        }
+
+        table thead {
+            background-color: #7ea8f8;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        .box {
+            text-align: center;
+            display: inline;
+            border: solid #0157f7;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <td>
+                    <form name="servername_form" action="{{url_for('main')}}" onsubmit="return validate_servername()" method="POST">
+                        <input name="servername" placeholder="Enter server address">
+                        <input type="submit" value="Go!">
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="center"><img src="data:image/png;base64,{{info['icon']}}"></div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="center"><div class="box">Online: {{len}}/{{info['vars']['sv_maxClients']}}</div></div>
+                </td>
+            </tr>
+        </thead>
+    </table>
+    <table>
+        <thead>
+            <tr>
+                <td>ID</td>
+                <td>Name</td>
+                <td>Identifiers</td>
+                <td>Ping</td>
+            </tr>
+        </thead>
+
+        {%for i in range(0, len)%}
+        <tr>
+            <td>{{players[i]['id']}}</td>
+            <td>{{players[i]['name']}}</td>
+            <td>
+                {%for k in players[i]['identifiers']%}
+                    {%if 'ip:' not in k%}
+                        {{k}}<br>
+                    {%endif%}
+                {%endfor%}
+            </td>
+            <td>{{players[i]['ping']}}</td>
+        </tr>
+        {%endfor%}
+    </table>
+</body>
+</html>
