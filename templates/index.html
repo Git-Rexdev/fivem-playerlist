@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <head>
     <title>Player List</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <script type="text/javascript">
         function validate_servername() {
             var inp = document.forms["servername_form"]["servername"].value;
@@ -11,8 +12,10 @@
             }
         }
     </script>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
     <style type="text/css">
-        table {
+        table.pure-table {
             width: 100%;
             background-color: #FFFFFF;
             border-collapse: collapse;
@@ -22,37 +25,27 @@
             color: #000000;
         }
 
-        table td, table.customTable th {
-            border-width: 2px;
+        table.pure-table td, table.pure-table th {
             border-color: #7ea8f8;
-            border-style: solid;
-            padding: 5px;
         }
 
-        table thead {
+        table.pure-table thead {
             background-color: #7ea8f8;
         }
 
         .center {
             text-align: center;
         }
-
-        .box {
-            text-align: center;
-            display: inline;
-            border: solid #0157f7;
-            border-radius: 5px;
-        }
     </style>
 </head>
 <body>
-    <table>
+    <table class="pure-table">
         <thead>
             <tr>
                 <td>
-                    <form name="servername_form" action="{{url_for('main')}}" onsubmit="return validate_servername()" method="POST">
-                        <input name="servername" placeholder="Enter server address">
-                        <input type="submit" value="Go!">
+                    <form class="pure-form" name="servername_form" action="{{url_for('main')}}" onsubmit="return validate_servername()" method="POST">
+                        <input class="pure-input-rounded" name="servername" type="text" placeholder="Enter server address">
+                        <button class="pure-button pure-button-primary">Go!</button>
                     </form>
                 </td>
             </tr>
@@ -63,12 +56,12 @@
             </tr>
             <tr>
                 <td>
-                    <div class="center"><div class="box">Online: {{len}}/{{info['vars']['sv_maxClients']}}</div></div>
+                    <div class="center" title="Online Players"><i class='fas fa-user-alt'></i> {{len}}/{{info['vars']['sv_maxClients']}}</div>
                 </td>
             </tr>
         </thead>
     </table>
-    <table>
+    <table class="pure-table pure-table-horizontal">
         <thead>
             <tr>
                 <td>ID</td>
