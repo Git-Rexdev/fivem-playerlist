@@ -16,6 +16,3 @@ To install the listed requirements, you can use the `pip` command:
 pip install -r requirements.txt
 ``
 
-
-## Feedback/Suggestions
-I'm not quite sure what direction I want to take this project. I'm open to ideas, suggestions, feedback, and pull requests from anyone who thinks they have something to offer. :)
