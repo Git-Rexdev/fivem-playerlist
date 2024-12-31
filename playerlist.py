@@ -5,7 +5,7 @@ import base64
 
 app = Flask(__name__)
 
-server_ip = "66.70.180.170:30120" # Default Server (LimitlessRP Server 1)
+server_ip = "de8.spaceify.eu:25615" # Default Server (LimitlessRP Server 1)
 
 url_players = "http://{}/players.json".format(server_ip)
 url_info = "http://{}/info.json".format(server_ip)
